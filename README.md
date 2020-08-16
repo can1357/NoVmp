@@ -22,18 +22,18 @@ By default NoVmp will parse every single jump into a VM, if you are only interes
 These addresses should be pointing at the VMEnter, as shown below:
 ![VMEnter](https://i.imgur.com/oIrgvVh.png)
 
-By default section discovery is automatic, but in case your calls are not being changed you should try adding the VMProtect section name into the section list like:
+By default section discovery is automatic, but in case your calls are not being chained you should try adding the VMProtect section name into the section list like:
 
 `-sections .be0`
 
-The `.<vmp>1` section is the merged VMProtect DLL which can be ignored.
+Note that the `.<vmp>1` section is the merged VMProtect DLL which should not be inputted.
 
-If you wish to disable optimization you can invoke it with `-noopt` and to test the experimental x64 compiler you can use `-experimental:recompile`, experimental standing for borderline broken.
+If you wish to disable optimization you can use `-noopt` and to test the experimental x64 compiler you can use `-experimental:recompile`.
 
 # Known bugs
 - Jump tables are not supported.
 - Binaries compiled with relocations stripped will require some manual code changes as it changes the way basic blocks function, this is left to the user and won't be fixed.
-- Experimental compiler is a horribly designed demo.
+- Experimental compiler is a borderline broken demo, issues related to it should not be submitted as it'll be reworked and will be in VTIL-Core.
 
 # License
 NoVmp is licensed under the GNU General Public License v3.

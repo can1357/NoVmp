@@ -1,0 +1,6 @@
+[submodule "VTIL-Core"]
+	path = VTIL-Core
+	url = https://github.com/vtil-project/VTIL-Core
+[submodule "linux-pe"]
+	path = linux-pe
+	url = https://github.com/can1357/linux-pe

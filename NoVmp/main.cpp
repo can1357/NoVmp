@@ -191,7 +191,7 @@ int main( int argc, const char** argv )
 
 	// Declare the worker.
 	//
-	const auto vm_lifter = [ & ] ( vmp::image_desc* desc, int vm_index )
+	const auto vm_lifter = [ & ] ( int vm_index ) -> vtil::routine*
 	{
 		// Lift the virtual machine.
 		//
@@ -199,8 +199,7 @@ int main( int argc, const char** argv )
 		log<CON_DEF>( "Lifting virtual-machine at %p...\n", vr->jmp_rva );
 		vmp::vm_state state = { desc, vr->jmp_rva };
 		vtil::routine* rtn = lift_il( &state );
-		if ( !rtn ) return;
-		vr->routine = rtn;
+		if ( !rtn ) return nullptr;
 
 		// Save unoptimized routine.
 		//
@@ -211,7 +210,7 @@ int main( int argc, const char** argv )
 
 		// If noopt set, return.
 		//
-		if ( !optimize ) return;
+		if ( !optimize ) return rtn;
 
 		// Apply optimizations.
 		//
@@ -269,14 +268,26 @@ int main( int argc, const char** argv )
 			rtn,
 			( working_directory / vtil::format::str( "%p.optimized.vtil", vr->jmp_rva ) ).string()
 		);
+		return rtn;
 	};
 
-	// Lift every routine, wait for completion.
+	// Lift every routine and wait for completion.
 	//
-	std::vector<std::future<void>> worker_pool;
+	std::vector<std::pair<size_t, std::future<vtil::routine*>>> worker_pool;
 	for ( int i = 0; i < desc->virt_routines.size(); i++ )
-		worker_pool.emplace_back( std::async( std::launch::async, vm_lifter, desc, i  ) );
-	worker_pool.clear();
+		worker_pool.emplace_back( i, std::async( std::launch::async, vm_lifter,  i ) );
+
+	for ( auto& [idx, rtn] : worker_pool )
+	{
+		try
+		{
+			desc->virt_routines[ idx ].routine = rtn.get();
+		}
+		catch ( const std::exception& ex )
+		{
+			log<CON_RED>( "Error: %s\n", ex.what() );
+		}
+	}
 
 	// Return if recompilation is not requested.
 	//

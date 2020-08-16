@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{C93BF114-7A97-45E1-8DA3-638AFDEDE25A}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>NoVmp</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <InterproceduralOptimization>true</InterproceduralOptimization>
+    <SpectreMitigation>false</SpectreMitigation>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)..\VTIL-Core\VTIL-Compiler\includes;$(SolutionDir)..\VTIL-Core\VTIL-Architecture\includes;$(SolutionDir)..\VTIL-Core\VTIL-SymEx\includes;$(SolutionDir)..\VTIL-Core\VTIL\includes;$(SolutionDir)..\VTIL-Core\VTIL-Common\includes;$(SolutionDir)..\VTIL-Core\Keystone\include;$(SolutionDir)..\VTIL-Core\Capstone\include;$(SolutionDir)..\linux-pe;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)..\VTIL-Core\VTIL-Compiler\includes;$(SolutionDir)..\VTIL-Core\VTIL-Architecture\includes;$(SolutionDir)..\VTIL-Core\VTIL-SymEx\includes;$(SolutionDir)..\VTIL-Core\VTIL\includes;$(SolutionDir)..\VTIL-Core\VTIL-Common\includes;$(SolutionDir)..\VTIL-Core\Keystone\include;$(SolutionDir)..\VTIL-Core\Capstone\include;$(SolutionDir)..\linux-pe;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <UseMSVC>false</UseMSVC>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <UndefinePreprocessorDefinitions>
+      </UndefinePreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level1</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <ConditionalBranch>keep</ConditionalBranch>
+      <Optimization>Full</Optimization>
+      <OptimizationDiagnosticLevel>Level2</OptimizationDiagnosticLevel>
+      <EmitOptimizationDiagnosticsToFile>false</EmitOptimizationDiagnosticsToFile>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <BrowseInformation>false</BrowseInformation>
+      <EmitDiagnosticsToFile>true</EmitDiagnosticsToFile>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <OmitFramePointers>true</OmitFramePointers>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <OpenMPSupport>true</OpenMPSupport>
+      <AdditionalOptions>/bigobj /d2AssertRecursiveInline %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/CGTHREADS:8 %(AdditionalOptions)</AdditionalOptions>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+    </Link>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="emulator\emulator.cpp">
+      <UseMSVC Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</UseMSVC>
+    </ClCompile>
+    <ClCompile Include="emulator\rwx_allocator.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="vmprotect\architecture.cpp" />
+    <ClCompile Include="vmprotect\il2vtil.cpp" />
+    <ClCompile Include="vmprotect\subroutines.cpp" />
+    <ClCompile Include="vmprotect\vtil_lifter.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="emulator\emulator.hpp" />
+    <ClInclude Include="emulator\rwx_allocator.hpp" />
+    <ClInclude Include="demo_compiler.hpp" />
+    <ClInclude Include="vmprotect\architecture.hpp" />
+    <ClInclude Include="vmprotect\deobfuscator.hpp" />
+    <ClInclude Include="vmprotect\il2vtil.hpp" />
+    <ClInclude Include="vmprotect\image_desc.hpp" />
+    <ClInclude Include="vmprotect\rkey.hpp" />
+    <ClInclude Include="vmprotect\subroutines.hpp" />
+    <ClInclude Include="vmprotect\vm_state.hpp" />
+    <ClInclude Include="vmprotect\vtil_lifter.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NoVmp.licenseheader" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VTIL-Core\VTIL\VTIL.vcxproj">
+      <Project>{8163e74c-dde4-4507-bd3d-064cd95ff33b}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+</Project>

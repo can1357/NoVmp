@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Emulator">
+      <UniqueIdentifier>{782c02f3-3325-4fa1-a1e1-0e4eb7a60d0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="VMProtect">
+      <UniqueIdentifier>{50a33830-2ebf-4ddb-aac5-7458941a307f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="emulator\emulator.cpp">
+      <Filter>Emulator</Filter>
+    </ClCompile>
+    <ClCompile Include="emulator\rwx_allocator.cpp">
+      <Filter>Emulator</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="vmprotect\architecture.cpp">
+      <Filter>VMProtect</Filter>
+    </ClCompile>
+    <ClCompile Include="vmprotect\il2vtil.cpp">
+      <Filter>VMProtect</Filter>
+    </ClCompile>
+    <ClCompile Include="vmprotect\subroutines.cpp">
+      <Filter>VMProtect</Filter>
+    </ClCompile>
+    <ClCompile Include="vmprotect\vtil_lifter.cpp">
+      <Filter>VMProtect</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="emulator\emulator.hpp">
+      <Filter>Emulator</Filter>
+    </ClInclude>
+    <ClInclude Include="emulator\rwx_allocator.hpp">
+      <Filter>Emulator</Filter>
+    </ClInclude>
+    <ClInclude Include="demo_compiler.hpp" />
+    <ClInclude Include="vmprotect\architecture.hpp">
+      <Filter>VMProtect</Filter>
+    </ClInclude>
+    <ClInclude Include="vmprotect\deobfuscator.hpp">
+      <Filter>VMProtect</Filter>
+    </ClInclude>
+    <ClInclude Include="vmprotect\il2vtil.hpp">
+      <Filter>VMProtect</Filter>
+    </ClInclude>
+    <ClInclude Include="vmprotect\image_desc.hpp">
+      <Filter>VMProtect</Filter>
+    </ClInclude>
+    <ClInclude Include="vmprotect\rkey.hpp">
+      <Filter>VMProtect</Filter>
+    </ClInclude>
+    <ClInclude Include="vmprotect\subroutines.hpp">
+      <Filter>VMProtect</Filter>
+    </ClInclude>
+    <ClInclude Include="vmprotect\vm_state.hpp">
+      <Filter>VMProtect</Filter>
+    </ClInclude>
+    <ClInclude Include="vmprotect\vtil_lifter.hpp">
+      <Filter>VMProtect</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NoVmp.licenseheader" />
+  </ItemGroup>
+</Project>

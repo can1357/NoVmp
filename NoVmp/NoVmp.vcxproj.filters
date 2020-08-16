@@ -61,8 +61,15 @@
     <ClInclude Include="vmprotect\vtil_lifter.hpp">
       <Filter>VMProtect</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NoVmp.licenseheader" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="NoVmp.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="logo.ico" />
   </ItemGroup>
 </Project>

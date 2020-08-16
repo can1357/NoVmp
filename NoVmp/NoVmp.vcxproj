@@ -135,6 +135,7 @@
     <ClInclude Include="emulator\emulator.hpp" />
     <ClInclude Include="emulator\rwx_allocator.hpp" />
     <ClInclude Include="demo_compiler.hpp" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="vmprotect\architecture.hpp" />
     <ClInclude Include="vmprotect\deobfuscator.hpp" />
     <ClInclude Include="vmprotect\il2vtil.hpp" />
@@ -151,6 +152,12 @@
     <ProjectReference Include="..\VTIL-Core\VTIL\VTIL.vcxproj">
       <Project>{8163e74c-dde4-4507-bd3d-064cd95ff33b}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="NoVmp.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="logo.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

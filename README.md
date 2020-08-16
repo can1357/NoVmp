@@ -31,7 +31,7 @@ Note that the `.<vmp>1` section is the merged VMProtect DLL which should not be 
 If you wish to disable optimization you can use `-noopt` and to test the experimental x64 compiler you can use `-experimental:recompile`.
 
 # Known bugs
-- Jump tables are not supported.
+- Known issues from VTIL-Core, mainly the lack of jump table support and propagation passes taking too long/not being great which are being worked on.
 - Binaries compiled with relocations stripped will require some manual code changes as it changes the way basic blocks function, this is left to the user and won't be fixed.
 - Experimental compiler is a borderline broken demo, issues related to it should not be submitted as it'll be reworked and will be in VTIL-Core.
 

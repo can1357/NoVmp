@@ -53,7 +53,7 @@ static void write_raw( void* data, size_t size, const std::string& file_path )
 static const std::string gpl3_license_header = ""
 "##############################################################################\n"
 "# NoVmp  Copyright (C) 2020 Can Boluk                                        #\n"
-"# This program comes with absolutely not warranty, and it is free software.  #\n"
+"# This program comes with absolutely no warranty, and it is free software.   #\n"
 "# You are welcome to redistribute it under certain conditions--for which you #\n"
 "# can refer to the GNU General Public License v3.                            #\n"
 "##############################################################################\n\n";

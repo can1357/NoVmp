@@ -8,7 +8,7 @@
 </p>
 
 ### VMProtect? Nope.
-NoVmp is a project devirtualizing VMProtect x64 3.0 - 3.6 (latest) into optimized VTIL and optionally recompiling back to x64 using the [Virtual-machine Translation Intermediate Language](https://github.com/vtil-project/VTIL-Core) library.
+NoVmp is a project devirtualizing VMProtect x64 3.0 - 3.6 (latest) into optimized VTIL and optionally recompiling back to x64 using the [Virtual-machine Translation Intermediate Language](https://github.com/vtil-project/VTIL-Core) library. It is rather experimental and is mostly a PoC I wanted to release. Most things can be improved especially with the new NativeLifters repo, but it did not exist back in the time this was written.
 
 # Usage
 NoVmp  accepts **unpacked binaries**, so if your binary is packed you'll have to dump it first, additionally if you did dump it using a tool like Scylla, you'll have to provide the original image base using the `-base` parameter like so:
@@ -29,8 +29,6 @@ By default section discovery is automatic, but in case your calls are not being 
 The `.<vmp>1` section is the merged VMProtect DLL which can be ignored.
 
 If you wish to disable optimization you can invoke it with `-noopt` and to test the experimental x64 compiler you can use `-experimental:recompile`, experimental standing for borderline broken.
-
-
 
 # Known bugs
 - Jump tables are not supported.

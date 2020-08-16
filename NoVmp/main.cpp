@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2020 Can Boluk
+// Copyright (C) 2020 Can Boluk
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -215,11 +215,11 @@ int main( int argc, const char** argv )
 
 		// Apply optimizations.
 		//
-		size_t ins = rtn->num_instructions();
-		size_t blks = rtn->num_blocks();
+		int64_t ins = rtn->num_instructions();
+		int64_t blks = rtn->num_blocks();
 		vtil::optimizer::apply_all_profiled( rtn );
-		size_t oins = rtn->num_instructions();
-		size_t oblks = rtn->num_blocks();
+		int64_t oins = rtn->num_instructions();
+		int64_t oblks = rtn->num_blocks();
 
 		// Write routine and optimization information.
 		//

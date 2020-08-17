@@ -35,7 +35,7 @@ Additionally you can use any of the following switches:
 
 # Known bugs
 - Known issues from VTIL-Core, mainly the lack of jump table support and propagation passes taking too long/not being great which are being worked on.
-- Binaries compiled with relocations stripped will require some manual code changes as it changes the way basic blocks function, this is left to the user and won't be fixed.
+- Binaries compiled with relocations stripped are not fully supported yet.
 - Experimental compiler is a borderline broken demo, issues related to it should not be submitted as it'll be reworked and will be in VTIL-Core.
 
 # License

@@ -164,6 +164,9 @@ namespace vmp
 			// Peek at the stream
 			uint8_t* ret = peek_vip( num_bytes );
 
+			// If invalid, throw
+			if ( !ret ) throw std::runtime_error( "Invalid VIP." );
+
 			// Skip the bytes
 			vip += num_bytes * dir_vip;
 

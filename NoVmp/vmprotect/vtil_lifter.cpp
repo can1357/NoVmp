@@ -27,6 +27,73 @@ namespace vmp
 {
 	vtil::basic_block* lift_il( vtil::basic_block* block, vm_state* vstate )
 	{
+		const auto fix_constant_pool = [ & ] ()
+		{
+			// Fix stack access to avoid trace cost.
+			//
+			vtil::optimizer::stack_pinning_pass{}( block );
+			vtil::optimizer::istack_ref_substitution_pass{}( block );
+
+			// Reloc base is always at the top of virtual stack upon block begin,
+			// create the base-address offset evaluator using it.
+			//
+			vtil::symbolic::pointer reloc_base =
+				vtil::symbolic::variable{ block->begin(), vtil::REG_SP }.to_expression();
+			auto eval = [ & ] ( const vtil::symbolic::unique_identifier& uid )
+				-> std::optional<uint64_t>
+			{
+				auto& var = uid.get<vtil::symbolic::variable>();
+				if ( var.is_register() && var.reg().is_image_base() )
+					return 0;
+				if ( var.is_memory() && ( var.mem().base - reloc_base ) == 0 )
+					return ( uint64_t ) -( int64_t ) vstate->img->get_real_image_base();
+				return std::nullopt;
+			};
+
+			// For each LDD:
+			//
+			vtil::cached_tracer tracer{};
+			for ( auto it = block->begin(); it != block->end(); it++ )
+			{
+				if ( it->base != &vtil::ins::ldd )
+					continue;
+				auto [base, off] = it->memory_location();
+				if ( base.is_stack_pointer() )
+					continue;
+        
+				// If it evaluates to constant delta from base:
+				//
+				if ( auto res = tracer( { it, base } )->evaluate( eval ); res.is_known() )
+				{
+					uint64_t rva = *res.get();
+					if ( !vstate->img->has_relocs ) rva -= vstate->img->get_real_image_base();
+
+					// If in a read-only section:
+					//
+					if ( auto section = vstate->img->rva_to_section( rva ) )
+					{
+						if ( !section->characteristics.mem_write )
+						{
+							// Replace with MOV.
+							//
+							uint64_t value = 0;
+
+							memcpy(
+								&value,
+								vstate->img->rva_to_ptr( rva ),
+								it->access_size() / 8
+							);
+
+							( +it )->base = &vtil::ins::mov;
+							( +it )->operands = { it->operands[ 0 ], vtil::operand{ value, it->access_size() } };
+						}
+						break;
+					}
+				}
+			}
+		};
+
+
 		// If virtual instruction pointer is not set:
 		//
 		if ( !vstate->vip )
@@ -148,6 +215,11 @@ namespace vmp
 				//
 				block->vexit( jmp_dest );
 
+				// Remove constant obfuscation.
+				//
+				if ( vstate->img->strip_constant_obfuscation )
+					fix_constant_pool();
+
 				// Pass the current block through optimization.
 				//
 				//block->owner->local_opt_count += vtil::optimizer::apply_all( block ); // OPTIMIZER
@@ -259,7 +331,6 @@ namespace vmp
 				auto exit_destination = jmp_dest.is_immediate() 
 							? vtil::symbolic::expression{ jmp_dest.imm().u64, jmp_dest.bit_count() }
 							: ( tracer.rtrace_p( { std::prev( block->end() ), jmp_dest.reg() } ) - vtil::symbolic::variable{ {}, vtil::REG_IMGBASE }.to_expression() ).simplify( true );
-
 #if DISCOVERY_VERBOSE_OUTPUT
 				log( "exit => %s\n", exit_destination.to_string() );
 #endif
@@ -379,6 +450,11 @@ namespace vmp
 					vtil::vip_t dst = vip_params + ( vstate->dir_vip < 0 ? -1 : 0 );
 					block->jmp( dst );
 
+					// Remove constant obfuscation.
+					//
+					if ( vstate->img->strip_constant_obfuscation )
+						fix_constant_pool();
+
 					// Pass the current block through optimization.
 					//
 					//block->owner->local_opt_count += vtil::optimizer::apply_all( block ); // OPTIMIZER
@@ -398,10 +474,20 @@ namespace vmp
 
 					if ( vstate->dir_vip < 0 )
 						block->sub( jmp_dest, 1 );
+
+					// If relocs stripped, substract image base, uses absolute address.
+					//
+					if( !vstate->img->has_relocs )
+						block->sub( jmp_dest, vstate->img->get_real_image_base() );
 					
 					// Insert jump to the location.
 					//
 					block->jmp( jmp_dest );
+
+					// Remove constant obfuscation.
+					//
+					if ( vstate->img->strip_constant_obfuscation )
+						fix_constant_pool();
 
 					// Pass the current block through optimization.
 					//

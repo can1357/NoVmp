@@ -47,5 +47,10 @@ namespace vmp
 		// List of virtualized routines
 		//
 		std::vector<virtual_routine> virt_routines;
+
+		// VMProtect specific options.
+		//
+		bool has_relocs = false;
+		bool strip_constant_obfuscation = false;
 	};
 };

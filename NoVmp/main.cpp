@@ -80,6 +80,13 @@ int main( int argc, const char** argv )
 	vmp::image_desc* desc = new vmp::image_desc;
 	desc->raw = read_raw( image_path.string() );
 	desc->override_image_base = 0;
+	desc->has_relocs = desc->get_nt_headers()->optional_header.data_directories.basereloc_directory.present();
+	desc->strip_constant_obfuscation = false;
+
+	// Warn if relocs are stripped.
+	//
+	if ( !desc->has_relocs )
+		warning( "This image has relocations stripped, NoVmp is not 100% compatible with this switch yet." );
 
 	// Parse options:
 	//
@@ -107,6 +114,11 @@ int main( int argc, const char** argv )
 		else if ( !strcmp( argv[ i ], "-noopt" ) )
 		{
 			optimize = false;
+			i++;
+		}
+		else if ( !strcmp( argv[ i ], "-opt:constant" ) )
+		{
+			desc->strip_constant_obfuscation = true;
 			i++;
 		}
 		else if ( !strcmp( argv[ i ], "-experimental:recompile" ) )

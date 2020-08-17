@@ -60,6 +60,11 @@ static const std::string gpl3_license_header = ""
 
 int main( int argc, const char** argv )
 {
+	vtil::logger::error_hook = [ ] ( const std::string& message )
+	{
+		log<CON_RED>( "[*] Unexpected error: %s\n", message );
+		throw std::runtime_error( message );
+	};
 
 	// Feelin' fancy.
 	//

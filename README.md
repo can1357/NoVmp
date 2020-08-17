@@ -22,9 +22,9 @@ By default NoVmp will parse every single jump into a VM, if you are only interes
 These addresses should be pointing at the VMEnter, as shown below:
 ![VMEnter](https://i.imgur.com/oIrgvVh.png)
 
-By default section discovery is automatic, but in case your calls are not being chained you should try adding the VMProtect section name into the section list like:
+By default section discovery is automatic, but in case your calls are not being chained you should try adding the VMProtect section name into the section list using `-sections` as shown below:
 
-`-sections .be0`
+`-sections .abc0 .def0`
 
 Note that the `.<vmp>1` section is the merged VMProtect DLL which should not be inputted.
 

@@ -88,7 +88,7 @@ namespace vmp
 				// TODO: Whoooops.
 				//
 				vtil::debug::dump( block->prev[ 0 ] );
-				error( "Whoooops invalid virtual jump." );
+				throw std::runtime_error( "Whoooops invalid virtual jump." );
 			}
 
 			// Unroll the stream
@@ -451,7 +451,7 @@ namespace vmp
 							}
 							log( "CC: %s\n", branch_info.cc );
 							//vtil::optimizer::aux::analyze_branch( block, &tracer, false );
-							error( "Whoooops hit switch case..." );
+							throw std::runtime_error( "Whoooops hit switch case..." );
 						}
 
 						destination_list.push_back( *branch->get<vtil::vip_t>() );

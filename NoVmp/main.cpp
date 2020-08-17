@@ -292,7 +292,7 @@ int main( int argc, const char** argv )
 	//
 	std::vector<std::pair<size_t, std::future<vtil::routine*>>> worker_pool;
 	for ( int i = 0; i < desc->virt_routines.size(); i++ )
-		worker_pool.emplace_back( i, std::async( std::launch::async, vm_lifter,  i ) );
+		worker_pool.emplace_back( i, std::async( /*std::launch::async*/ std::launch::deferred, vm_lifter,  i ) );
 
 	for ( auto& [idx, rtn] : worker_pool )
 	{

@@ -65,7 +65,7 @@ namespace vmp
 				//
 				if ( auto res = tracer( { it, base } )->evaluate( eval ); res.is_known() )
 				{
-					uint64_t rva = *res.get();
+					uint64_t rva = *res.get() + off;
 					if ( !vstate->img->has_relocs ) rva -= vstate->img->get_real_image_base();
 
 					// If in a read-only section:
@@ -87,7 +87,6 @@ namespace vmp
 							( +it )->base = &vtil::ins::mov;
 							( +it )->operands = { it->operands[ 0 ], vtil::operand{ value, it->access_size() } };
 						}
-						break;
 					}
 				}
 			}

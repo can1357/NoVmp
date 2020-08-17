@@ -19,7 +19,7 @@ By default NoVmp will parse every single jump into a VM, if you are only interes
 
 These addresses should be pointing at the VMEnter, as shown below:
 
-![VMEnter](../assets/vmenter.png)
+![VMEnter](https://raw.githubusercontent.com/can1357/NoVmp/master/assets/vmenter.png)
 
 By default section discovery is automatic, but in case your calls are not being chained you should try adding the VMProtect section name into the section list using `-sections` as shown below:
 

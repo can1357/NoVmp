@@ -28,7 +28,10 @@ By default section discovery is automatic, but in case your calls are not being 
 
 Note that the `.<vmp>1` section is the merged VMProtect DLL which should not be inputted.
 
-If you wish to disable optimization you can use `-noopt` and to test the experimental x64 compiler you can use `-experimental:recompile`.
+Additionally you can use any of the following switches:
+- `-noopt`: Disables optimization.
+- `-opt:constant`: Optimizes the VMProtect Ultra constant obfuscation out.
+- `-experimental:recompile`: Enables the experimental x64 compiler.
 
 # Known bugs
 - Known issues from VTIL-Core, mainly the lack of jump table support and propagation passes taking too long/not being great which are being worked on.

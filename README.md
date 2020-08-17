@@ -1,9 +1,7 @@
 <p align="center">
-
   <a href="https://www.vtil.org/">
-    <img width="256" heigth="256" src="https://i.imgur.com/5yt7EsH.png">
+    <img width="256" heigth="256" src="https://raw.githubusercontent.com/can1357/NoVmp/master/assets/logo.png">
   </a>  
-
   <h1 align="center">NoVmp</h1>
 </p>
 
@@ -20,11 +18,12 @@ By default NoVmp will parse every single jump into a VM, if you are only interes
 `-vms 0x729B81 0x72521`
 
 These addresses should be pointing at the VMEnter, as shown below:
-![VMEnter](https://i.imgur.com/oIrgvVh.png)
+
+![VMEnter](../assets/vmenter.png)
 
 By default section discovery is automatic, but in case your calls are not being chained you should try adding the VMProtect section name into the section list using `-sections` as shown below:
 
-`-sections .abc0 .def0`
+`-sections .xxx0 .yyy0`
 
 Note that the `.<vmp>1` section is the merged VMProtect DLL which should not be inputted.
 

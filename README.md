@@ -1,8 +1,22 @@
 <p align="center">
   <a href="https://www.vtil.org/">
     <img width="256" heigth="256" src="https://raw.githubusercontent.com/can1357/NoVmp/master/assets/logo.png">
-  </a>  
+  </a>
+  
   <h1 align="center">NoVmp</h1>
+  
+  <p align="center">
+    <a href="https://ci.appveyor.com/project/can1357/NoVmp">
+      <img src="https://img.shields.io/appveyor/build/can1357/NoVmp?logo=appveyor&style=flat-square" alt="appveyor-ci"/>
+    </a>
+    <a href="https://github.com/can1357/NoVmp/blob/master/LICENSE.md">
+      <img src="https://img.shields.io/github/license/can1357/NoVmp.svg?style=flat-square" alt="license"/>
+    </a>
+  </p>
+  
+  <p align="center">
+    A static devirtualizer for VMProtect x64 3.x powered by VTIL.
+  </p>
 </p>
 
 ### VMProtect? Nope.

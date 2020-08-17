@@ -86,7 +86,7 @@ int main( int argc, const char** argv )
 	// Warn if relocs are stripped.
 	//
 	if ( !desc->has_relocs )
-		warning( "This image has relocations stripped, NoVmp is not 100% compatible with this switch yet." );
+		warning( "This image has relocations stripped, NoVmp is not 100%% compatible with this switch yet." );
 
 	// Parse options:
 	//

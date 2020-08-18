@@ -372,7 +372,7 @@ int main( int argc, const char** argv )
 
 	// Write the recompiled image.
 	//
-	image_path.replace_extension( "devirt." + image_path.extension().string() );
+	image_path.replace_extension( "devirt" + image_path.extension().string() );
 	write_raw( 
 		desc->raw.data(), 
 		desc->raw.size(), 

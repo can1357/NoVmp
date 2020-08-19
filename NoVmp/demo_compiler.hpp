@@ -240,7 +240,7 @@ namespace vtil
 				// Iterate every register.
 				//
 				mtx.lock_shared();
-				std::optional<register_desc> allocated_register = allocate_register( it, state, [ & ] ( const register_desc& reg )
+				std::optional<register_desc> allocated_register = allocate_register( it, state, [ &, it = it ] ( const register_desc& reg )
 				{
 					return optimizer::aux::is_alive( { it, reg }, blk->end(), xblock, nullptr );
 				} );
@@ -304,7 +304,7 @@ namespace vtil
 				{
 					// Make sure instruction does not reference this register.
 					// TODO: Handle
-					fassert( !symbolic::variable{ it, operand{ res }.reg() }.written_by( it ) );
+					fassert( ( !symbolic::variable{ it, operand{ res }.reg() }.written_by( it ) ) );
 
 					// Insert a VPINW.
 					//
@@ -324,7 +324,7 @@ namespace vtil
 
 					// Make sure instruction does not reference this register.
 					// TODO: Handle
-					fassert( !symbolic::variable{ it, operand{res}.reg() }.accessed_by( it ) );
+					fassert( ( !symbolic::variable{ it, operand{res}.reg() }.accessed_by( it ) ) );
 
 					// Allocate a temporary to hold the previous value of the register.
 					//
@@ -1168,7 +1168,7 @@ namespace vtil
 			{
 				// TODO: What to do if this triggers?
 				//
-				fassert( !symbolic::variable{ it, state->frame_register }.written_by( it ) );
+				fassert( ( !symbolic::variable{ it, state->frame_register }.written_by( it ) ) );
 
 				// If immmediate:
 				//

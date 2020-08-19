@@ -29,6 +29,9 @@
 #include <vtil/io>
 #include "rwx_allocator.hpp"
 
+#ifndef _WIN32
+#define __stdcall __attribute__ ( ( ms_abi ) )
+#endif
 
 /*
 	mov     rax, rsp

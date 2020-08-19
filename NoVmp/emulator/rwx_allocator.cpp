@@ -104,7 +104,7 @@ namespace mem
 #else
 		// Free the page(s) we've allocated.
 		//
-		mmunmap( desc, desc->allocation_size );
+		munmap( desc, desc->allocation_size );
 #endif
 	}
 };

@@ -13,7 +13,11 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
+#ifdef _WIN32
 #include <intrin.h>
+#else
+#include <x86intrin.h>
+#endif
 #include <fstream>
 #include <tuple>
 #include <vector>
@@ -27,7 +31,9 @@
 #include "vmprotect/vm_state.hpp"
 #include "demo_compiler.hpp"
 
+#ifdef _MSC_VER
 #pragma comment(linker, "/STACK:34359738368")
+#endif
 
 using namespace vtil::logger;
 
@@ -357,7 +363,7 @@ int main( int argc, const char** argv )
 
 	win::section_header_t* scn = nt_hdrs->get_section( nt_hdrs->file_header.num_sections++ );
 	memset( scn, 0, sizeof( win::section_header_t ) );
-	strcpy_s( scn->name, ".novmp" );
+	strcpy( scn->name, ".novmp" );
 	scn->characteristics.cnt_code = 1;
 	scn->characteristics.mem_execute = 1;
 	scn->characteristics.mem_read = 1;

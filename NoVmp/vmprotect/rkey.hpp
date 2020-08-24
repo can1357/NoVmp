@@ -108,7 +108,7 @@ namespace vmp
 
 		// Write the emulation information and return the block
 		//
-		out.decrypt = [ = ] ( void* src, rkey_t key ) -> std::pair<rkey_value, rkey_t>
+		out.decrypt = [ =, block_stream = block_stream ] ( void* src, rkey_t key ) -> std::pair<rkey_value, rkey_t>
 		{
 			rkey_value value;
 			value.u64 = 0;

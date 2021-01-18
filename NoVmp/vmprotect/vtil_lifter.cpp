@@ -242,7 +242,7 @@ namespace vmp
 					//
 					auto continue_from = ( tracer.rtrace_p( { std::prev( block->end() ),
 										   { tracer( { std::prev( block->end() ), vtil::REG_SP } ) + block->sp_offset, 64 } } ) -
-										   vtil::symbolic::variable{ {}, vtil::REG_IMGBASE }.to_expression() ).simplify( true );
+										   (vstate->img->has_relocs ? vtil::symbolic::variable{ {}, vtil::REG_IMGBASE }.to_expression() : vtil::symbolic::expression{ vstate->img->get_real_image_base() })).simplify( true );
 #if DISCOVERY_VERBOSE_OUTPUT
 					log( "continue => %s\n", continue_from.to_string() );
 #endif
@@ -327,9 +327,9 @@ namespace vmp
 
 				// Reached real exit, determine destination.
 				//
-				auto exit_destination = jmp_dest.is_immediate() 
-							? vtil::symbolic::expression{ jmp_dest.imm().u64, jmp_dest.bit_count() }
-							: ( tracer.rtrace_p( { std::prev( block->end() ), jmp_dest.reg() } ) - vtil::symbolic::variable{ {}, vtil::REG_IMGBASE }.to_expression() ).simplify( true );
+				auto exit_destination = jmp_dest.is_immediate()
+					? vtil::symbolic::expression{ jmp_dest.imm().u64, jmp_dest.bit_count() }
+					: (tracer.rtrace_p({ std::prev(block->end()), jmp_dest.reg() }) - (vstate->img->has_relocs ? vtil::symbolic::variable{ {}, vtil::REG_IMGBASE }.to_expression() : vtil::symbolic::expression{ vstate->img->get_real_image_base() })).simplify(true);
 #if DISCOVERY_VERBOSE_OUTPUT
 				log( "exit => %s\n", exit_destination.to_string() );
 #endif
@@ -496,7 +496,8 @@ namespace vmp
 					//
 					vtil::/*cached_*/tracer tracer = {};
 					std::vector<vtil::vip_t> destination_list;
-					auto branch_info = vtil::optimizer::aux::analyze_branch( block, &tracer, { .pack = true } );
+					uint64_t image_base = vstate->img->has_relocs ? 0 : vstate->img->get_real_image_base();
+					auto branch_info = vtil::optimizer::aux::analyze_branch( block, &tracer, { .pack = true }, image_base);
 #if DISCOVERY_VERBOSE_OUTPUT
 					log( "CC: %s\n", branch_info.cc );
 					log( "VJMP => %s\n", branch_info.destinations );
@@ -510,13 +511,13 @@ namespace vmp
 							// Recursively trace the expression and remove any matches of REG_IMGBASE.
 							//
 							branch = tracer.rtrace_pexp( *branch );
-							branch.transform( [ ] ( vtil::symbolic::expression::delegate& ex )
+							branch.transform( [image_base] ( vtil::symbolic::expression::delegate& ex )
 								{
 									if ( ex->is_variable() )
 									{
 										auto& var = ex->uid.get<vtil::symbolic::variable>();
 										if ( var.is_register() && var.reg() == vtil::REG_IMGBASE )
-											*+ex = { 0, ex->size() };
+											*+ex = { image_base, ex->size() };
 									}
 								} )
 								.simplify( true );

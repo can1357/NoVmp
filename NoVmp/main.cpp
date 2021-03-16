@@ -13,6 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
+#define _CRT_SECURE_NO_WARNINGS
 #ifdef _WIN32
 #include <intrin.h>
 #else
@@ -246,7 +247,7 @@ int main( int argc, const char** argv )
 		// Write routine and optimization information.
 		//
 		{
-			std::lock_guard _g{ logger_state.lock };
+			std::lock_guard _g{ logger_state };
 			log<CON_GRN>( "\nLifted & optimized virtual-machine at %p\n", vr->jmp_rva );
 
 			log<CON_YLW>( "Optimizer stats:\n" );
@@ -298,7 +299,7 @@ int main( int argc, const char** argv )
 	//
 	std::vector<std::pair<size_t, std::future<vtil::routine*>>> worker_pool;
 	for ( int i = 0; i < desc->virt_routines.size(); i++ )
-		worker_pool.emplace_back( i, std::async( /*std::launch::async*/ std::launch::deferred, vm_lifter,  i ) );
+		worker_pool.emplace_back( i, std::async( /*std::launch::async*/ std::launch::deferred, vm_lifter, i ) );
 
 	for ( auto& [idx, rtn] : worker_pool )
 	{

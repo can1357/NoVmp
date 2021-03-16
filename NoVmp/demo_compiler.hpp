@@ -276,7 +276,7 @@ namespace vtil
 			return counter;
 		}
 	};
-	struct arch_normalization_pass : optimizer::pass_interface<true>
+	struct arch_normalization_pass : optimizer::pass_interface<optimizer::execution_order::serial>
 	{
 		std::shared_mutex mtx;
 		size_t pass( basic_block* blk, bool xblock = false )

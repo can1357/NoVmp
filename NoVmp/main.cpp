@@ -364,7 +364,7 @@ int main( int argc, const char** argv )
 
 	win::section_header_t* scn = nt_hdrs->get_section( nt_hdrs->file_header.num_sections++ );
 	memset( scn, 0, sizeof( win::section_header_t ) );
-	strcpy( scn->name, ".novmp" );
+	strcpy( &scn->name.short_name[ 0 ], ".novmp" );
 	scn->characteristics.cnt_code = 1;
 	scn->characteristics.mem_execute = 1;
 	scn->characteristics.mem_read = 1;

@@ -190,7 +190,7 @@ namespace vmp
 						return true;
 
 					for ( const auto& prefix : section_prefixes )
-						if ( !memcmp( prefix.data(), section->name, prefix.size() ) )
+						if ( !memcmp( prefix.data(), &section->name.short_name[0], prefix.size() ) )
 							return true;
 
 					return false;
@@ -497,7 +497,7 @@ namespace vmp
 					vtil::/*cached_*/tracer tracer = {};
 					std::vector<vtil::vip_t> destination_list;
 					uint64_t image_base = vstate->img->has_relocs ? 0 : vstate->img->get_real_image_base();
-					auto branch_info = vtil::optimizer::aux::analyze_branch( block, &tracer, { .pack = true }, image_base);
+					auto branch_info = vtil::optimizer::aux::analyze_branch( block, &tracer, { .pack = true } );
 #if DISCOVERY_VERBOSE_OUTPUT
 					log( "CC: %s\n", branch_info.cc );
 					log( "VJMP => %s\n", branch_info.destinations );

@@ -7,6 +7,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NoVmp", "NoVmp.vcxproj", "{
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VTIL", "..\VTIL-Core\VTIL\VTIL.vcxproj", "{8163E74C-DDE4-4507-BD3D-064CD95FF33B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VTIL-Architecture", "..\VTIL-Core\VTIL-Architecture\VTIL-Architecture.vcxproj", "{A79E2869-7626-4801-B09D-5C12F5163BA3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VTIL-Common", "..\VTIL-Core\VTIL-Common\VTIL-Common.vcxproj", "{EC6B8F7F-730C-4086-B143-4664CC16DF8F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VTIL-Compiler", "..\VTIL-Core\VTIL-Compiler\VTIL-Compiler.vcxproj", "{F960486B-2DB4-44AF-91BB-0F19F228ABCF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VTIL-SymEx", "..\VTIL-Core\VTIL-SymEx\VTIL-SymEx.vcxproj", "{FE3202CE-D05C-4E04-AE9B-D30305D8CE31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +29,22 @@ Global
 		{8163E74C-DDE4-4507-BD3D-064CD95FF33B}.Debug|x64.Build.0 = Debug|x64
 		{8163E74C-DDE4-4507-BD3D-064CD95FF33B}.Release|x64.ActiveCfg = Release|x64
 		{8163E74C-DDE4-4507-BD3D-064CD95FF33B}.Release|x64.Build.0 = Release|x64
+		{A79E2869-7626-4801-B09D-5C12F5163BA3}.Debug|x64.ActiveCfg = Debug|x64
+		{A79E2869-7626-4801-B09D-5C12F5163BA3}.Debug|x64.Build.0 = Debug|x64
+		{A79E2869-7626-4801-B09D-5C12F5163BA3}.Release|x64.ActiveCfg = Release|x64
+		{A79E2869-7626-4801-B09D-5C12F5163BA3}.Release|x64.Build.0 = Release|x64
+		{EC6B8F7F-730C-4086-B143-4664CC16DF8F}.Debug|x64.ActiveCfg = Debug|x64
+		{EC6B8F7F-730C-4086-B143-4664CC16DF8F}.Debug|x64.Build.0 = Debug|x64
+		{EC6B8F7F-730C-4086-B143-4664CC16DF8F}.Release|x64.ActiveCfg = Release|x64
+		{EC6B8F7F-730C-4086-B143-4664CC16DF8F}.Release|x64.Build.0 = Release|x64
+		{F960486B-2DB4-44AF-91BB-0F19F228ABCF}.Debug|x64.ActiveCfg = Debug|x64
+		{F960486B-2DB4-44AF-91BB-0F19F228ABCF}.Debug|x64.Build.0 = Debug|x64
+		{F960486B-2DB4-44AF-91BB-0F19F228ABCF}.Release|x64.ActiveCfg = Release|x64
+		{F960486B-2DB4-44AF-91BB-0F19F228ABCF}.Release|x64.Build.0 = Release|x64
+		{FE3202CE-D05C-4E04-AE9B-D30305D8CE31}.Debug|x64.ActiveCfg = Debug|x64
+		{FE3202CE-D05C-4E04-AE9B-D30305D8CE31}.Debug|x64.Build.0 = Debug|x64
+		{FE3202CE-D05C-4E04-AE9B-D30305D8CE31}.Release|x64.ActiveCfg = Release|x64
+		{FE3202CE-D05C-4E04-AE9B-D30305D8CE31}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

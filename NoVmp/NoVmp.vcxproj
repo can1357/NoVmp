@@ -48,11 +48,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\VTIL-Core\VTIL-Compiler\includes;$(SolutionDir)..\VTIL-Core\VTIL-Architecture\includes;$(SolutionDir)..\VTIL-Core\VTIL-SymEx\includes;$(SolutionDir)..\VTIL-Core\VTIL\includes;$(SolutionDir)..\VTIL-Core\VTIL-Common\includes;$(SolutionDir)..\VTIL-Core\Keystone\include;$(SolutionDir)..\VTIL-Core\Capstone\include;$(SolutionDir)..\linux-pe;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\VTIL-Core\VTIL-Compiler\includes;$(SolutionDir)..\VTIL-Core\VTIL-Architecture\includes;$(SolutionDir)..\VTIL-Core\VTIL-SymEx\includes;$(SolutionDir)..\VTIL-Core\VTIL\includes;$(SolutionDir)..\VTIL-Core\VTIL-Common\includes;$(SolutionDir)..\VTIL-Core\Keystone\include;$(SolutionDir)..\VTIL-Core\Capstone\include;$(SolutionDir)..\linux-pe\includes;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\VTIL-Core\VTIL-Compiler\includes;$(SolutionDir)..\VTIL-Core\VTIL-Architecture\includes;$(SolutionDir)..\VTIL-Core\VTIL-SymEx\includes;$(SolutionDir)..\VTIL-Core\VTIL\includes;$(SolutionDir)..\VTIL-Core\VTIL-Common\includes;$(SolutionDir)..\VTIL-Core\Keystone\include;$(SolutionDir)..\VTIL-Core\Capstone\include;$(SolutionDir)..\linux-pe;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\VTIL-Core\VTIL-Compiler\includes;$(SolutionDir)..\VTIL-Core\VTIL-Architecture\includes;$(SolutionDir)..\VTIL-Core\VTIL-SymEx\includes;$(SolutionDir)..\VTIL-Core\VTIL\includes;$(SolutionDir)..\VTIL-Core\VTIL-Common\includes;$(SolutionDir)..\VTIL-Core\Keystone\include;$(SolutionDir)..\VTIL-Core\Capstone\include;$(SolutionDir)..\linux-pe\includes;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

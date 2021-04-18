@@ -121,6 +121,7 @@ int main( int argc, const char** argv )
 		{
 			fassert( ++i < argc );
 			desc->override_image_base = strtoull( argv[ i ], nullptr, 16 );
+			desc->has_relocs = true;
 			i++;
 		}
 		else if ( !strcmp( argv[ i ], "-noopt" ) )

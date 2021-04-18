@@ -490,7 +490,7 @@ namespace vmp
 
 					// Pass the current block through optimization.
 					//
-					//block->owner->local_opt_count += vtil::optimizer::apply_all( block ); // OPTIMIZER
+					block->owner->local_opt_count += vtil::optimizer::apply_all( block ); // OPTIMIZER
 
 					// Allocate an array of resolved destinations.
 					//

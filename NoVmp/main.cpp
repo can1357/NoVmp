@@ -110,7 +110,7 @@ int main( int argc, const char** argv )
 		if ( !strcmp( argv[ i ], "-vms" ) )
 		{
 			while ( ++i < argc && argv[ i ][ 0 ] != '-' )
-				target_vms.emplace_back( strtoul( argv[ i ], nullptr, 16 ) );
+				target_vms.emplace_back( strtoull( argv[ i ], nullptr, 16 ) );
 		}
 		else if ( !strcmp( argv[ i ], "-sections" ) )
 		{
